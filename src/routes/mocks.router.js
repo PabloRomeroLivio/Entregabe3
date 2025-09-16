@@ -6,7 +6,6 @@ import PetModel from '../dao/models/pet.model.js';
 
 const router = Router();
 
-
 router.get('/mockingpets', (req, res) => {
   const pets = generateMockPets(100);
   res.status(200).json(pets);
@@ -22,16 +21,17 @@ router.get('/mockingusers', (req, res) => {
 router.post('/generateData', async (req, res) => {
   const { users: numUsers, pets: numPets } = req.body;
 
-  if (!numUsers || !numPets) {
-    return res.status(400).json({ error: 'Debes especificar el número de usuarios y mascotas.' });
-  }
+if (numUsers === undefined || numPets === undefined) {
+  return res.status(400).json({ error: 'Debes especificar el número de usuarios y mascotas.' });
+}
+
 
   try {
-    
+   
     const usersToInsert = generateMockUsers(numUsers);
     await UserModel.insertMany(usersToInsert);
 
-    
+   
     const petsToInsert = generateMockPets(numPets);
     await PetModel.insertMany(petsToInsert);
 

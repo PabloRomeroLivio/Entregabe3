@@ -1,0 +1,16 @@
+# Node modules
+node_modules/
+
+# Variables de entorno
+.env
+
+# Logs
+*.log
+
+# Carpeta de salida de compilación si la hubiera
+dist/
+build/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
